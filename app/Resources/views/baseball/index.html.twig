@@ -1,0 +1,235 @@
+
+{% extends 'base.html.twig' %}
+ 
+{% block body %}
+
+{% for item in personal %}<h2 style="text-align:center;color:blue;">{{item.nameLast }},{{ item.nameFirst }}</h2>{% endfor %}
+
+ 
+
+ 
+  
+ 
+
+<hr></hr>
+
+<div class="container">  
+
+	<ul class="nav nav-tabs">
+	  <li class="active"><a data-toggle="tab" href="#home">Personal</a></li>
+	  <li><a data-toggle="tab"  href="#menu1">Awards</a></li>
+	  <li><a data-toggle="tab"  href="#menu2">Appearances</a></li>
+	  <li><a data-toggle="tab"  href="#menu3">Batting</a></li>
+	  <li><a data-toggle="tab"  href="#menu4">Fielding</a></li>
+	</ul>
+
+<div class="tab-content">
+
+  <div id="home" class="tab-pane fade in active">
+    
+			<div class="container-fluid tab-content clearfix">
+				  
+				   {% for item in personal %}
+				  
+				  
+				  <div class="row">
+					<div class="col-sm-1"><b>Born</b></div>
+					<div class="col-sm-1"><b>State</b></div>
+					<div class="col-sm-1"><b>Country</b></div>
+					<div class="col-sm-1"><b>Died</b></div>
+					<div class="col-sm-1"><b>State</b></div>
+					<div class="col-sm-1"><b>Height</b></div>
+					<div class="col-sm-1"><b>Weight</b></div>
+					<div class="col-sm-1"><b>Throws</b></div>
+					<div class="col-sm-1"><b>Debut</b></div>
+					<div class="col-sm-1"><b>Final</b></div>
+				  </div>
+				  
+				  <div class="row">
+					<div class="col-sm-1">{{item.birthMonth }}/{{item.birthDay}}/{{item.birthYear }}</div>
+					<div class="col-sm-1">{{item.birthState}}</div>
+					<div class="col-sm-1">{{item.birthCountry}}</div>
+					<div class="col-sm-1">{{item.deathMonth             | default("") }}/{{item.deathDay | default("") }}/{{item.deathYear | default("")}}</div>
+					<div class="col-sm-1">{{item.deathState             | default('N/A')}}</div>
+					<div class="col-sm-1">{{item.deathCountry           | default('N/A')}}</div>
+					<div class="col-sm-1">{{item.height                 | default('N/A')}}</div>
+					<div class="col-sm-1">{{item.throws                 | default('N/A')}}</div>
+					<div class="col-sm-1">{{item.debut |date("m/d/Y")   | default('N/A')}}</div>
+					<div class="col-sm-1">{{item.finalGame|date("m/d/Y")| default('N/A')}}</div>
+				  </div>
+					 
+				  
+				{% endfor %}
+				   
+			
+			</div>			
+   </div>
+  
+  <div id="menu1" class="tab-pane fade">
+  
+			
+				  
+				  
+				  <div class="row">
+					<div class="col-sm-4"><b>Award</b></div>
+					<div class="col-sm-4"><b>Year</b></div>
+					<div class="col-sm-4"><b>League</b></div>
+				  </div>
+				  
+				   {% for item in award %}
+				  
+				  <div class="row .table-bordered">
+					<div class="col-sm-4">{{item.awardID }}</div>
+					<div class="col-sm-4">{{item.yearID}}</div>
+					<div class="col-sm-4">{{item.lgID}}</div>
+				  </div>
+					 
+				  
+				{% endfor %}
+  
+  
+  
+   
+  </div>
+  
+  <div id="menu2" class="tab-pane fade">
+  
+  
+				<div class="row">
+					<div class="col-sm-4"><b>Award</b></div>
+					<div class="col-sm-4"><b>Year</b></div>
+					<div class="col-sm-4"><b>League</b></div>
+				  </div>
+				  
+				   {% for item in appearances %}
+				  
+				  <div class="row .table-bordered">
+					<div class="col-sm-4">{{item.yearID }}</div>
+					<div class="col-sm-4">{{item.teamID}}</div>
+					<div class="col-sm-4">{{item.G_all}}</div>
+				  </div>
+					 
+				  
+				{% endfor %}
+	
+	
+	
+	
+	
+   </div>
+   
+   <div id="menu3" class="tab-pane fade">
+  
+  
+		<div class="row">
+						   <div class="col-sm-1"><b>Year</b></div>
+						   <div class="col-sm-1"><b>Team</b></div>
+						   <div class="col-sm-1"><b>Games</b></div>
+						    
+						   <div class="col-sm-1"><b>AB</b></div>
+						   <div class="col-sm-1"><b>R</b></div>
+						   <div class="col-sm-1"><b>H</b></div>
+						   <div class="col-sm-1"><b>HR</b></div>
+						   <div class="col-sm-1"><b>RBI</b></div>
+						   <div class="col-sm-1"><b>SB</b></div>
+						 
+						   <div class="col-sm-1"><b>BB</b></div>
+						   <div class="col-sm-1"><b>SO</b></div>
+						  
+						   <div class="col-sm-1"><b>HBP</b></div>
+						  
+						   
+					</div>
+					   
+					{% for item in batting %}   
+					
+					 <div class="row">
+					 	 
+						<div class="col-sm-1"> {{ item.yearID }}</div> 
+						<div class="col-sm-1"> {{ item.teamID }}</div> 
+						<div class="col-sm-1"> {{ item.G}}</div> 
+						
+						<div class="col-sm-1"> {{ item.AB}}</div> 
+						<div class="col-sm-1"> {{ item.R}}</div> 
+						<div class="col-sm-1"> {{ item.H}}</div> 
+						<div class="col-sm-1"> {{ item.HR}}</div> 
+						<div class="col-sm-1"> {{ item.RBI}}</div> 
+						<div class="col-sm-1"> {{ item.SB}}</div> 
+						
+						<div class="col-sm-1"> {{ item.BB}}</div> 
+						<div class="col-sm-1"> {{ item.SO}}</div> 
+						 
+						<div class="col-sm-1"> {{ item.HBP}}</div> 
+					  
+					 
+					 </div>
+					 
+					{% endfor %}		 
+	
+	
+	
+	
+	
+   </div>
+   
+   
+   <div id="menu4" class="tab-pane fade">
+  
+		<div class="row">
+						   <div class="col-sm-1"><b>Year</b></div>
+						   <div class="col-sm-1"><b>Team</b></div>
+						   <div class="col-sm-1"><b>League</b></div>
+						   <div class="col-sm-1"><b>POS</b></div>
+						   <div class="col-sm-1"><b>InnOuts</b></div>
+						   <div class="col-sm-1"><b>PO</b></div>
+						   <div class="col-sm-1"><b>A</b></div>
+						   <div class="col-sm-1"><b>E</b></div>
+						   <div class="col-sm-1"><b>DP</b></div>
+						   <div class="col-sm-1"><b>PB</b></div>
+						   
+						    
+						  
+						   
+					   </div>
+					   
+					{% for item in fielding %}   
+					
+					
+					 
+					
+					<div class="row">
+					 	 
+						<div class="col-sm-1"> {{ item.yearID }}</div> 
+						<div class="col-sm-1"> {{ item.teamID }}</div> 
+						<div class="col-sm-1"> {{ item.lgID}}</div> 
+						<div class="col-sm-1"> {{ item.POS}}</div> 
+						<div class="col-sm-1"> {{ item.G}}</div> 
+						<div class="col-sm-1"> {{ item.GS}}</div> 
+						<div class="col-sm-1"> {{ item.InnOuts}}</div> 
+						<div class="col-sm-1"> {{ item.PO}}</div> 
+						<div class="col-sm-1"> {{ item.A}}</div> 
+						<div class="col-sm-1"> {{ item.E}}</div> 
+						<div class="col-sm-1"> {{ item.PB}}</div> 
+						 
+					  
+					 
+					 </div>
+					 
+					 {% endfor %}
+					 	
+	
+	
+	
+	
+	
+   </div>
+  
+  
+ </div>
+
+
+{% endblock %}
+
+ 
+
+ 

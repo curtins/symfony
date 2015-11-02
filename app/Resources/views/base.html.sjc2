@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MLB Player Profiles</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> 
+ 
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script>
+  $(function() {
+    $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" ); 
+    $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+  });
+  </script>
+  <style>
+  .ui-tabs-vertical { width: 55em; }
+  .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 12em; }
+  .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
+  .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
+  .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; }
+  .ui-tabs-vertical .ui-tabs-panel { padding: 0em; float: right; width: 40em;}
+ 
+  </style>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.js"></script>
+
+<!-- Latest compiled and minified Locales -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/locale/bootstrap-table-zh-CN.min.js"></script>
+
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+ 
+<script type="text/javascript">  
+jQuery(document).ready(function(){
+
+$("#zipsearch").autocomplete({
+		source: "/suggest_zip.php",
+		focus: function(event, ui) {
+			// prevent autocomplete from updating the textbox
+			event.preventDefault();
+			// manually update the textbox
+			$(this).val(ui.item.label);
+		},
+		select: function(event, ui) {
+			// prevent autocomplete from updating the textbox
+			event.preventDefault();
+			// manually update the textbox and hidden field
+			$(this).val(ui.item.label);
+			$("#zipsearch").val(ui.item.value);
+			$redirect = "http://symfony.scurtin.org/app_dev.php/?term=" + ui.item.value;
+			console.log("http://symfony.scurtin.com/term=" + ui.item.value );
+			window.location = $redirect;
+		}
+	});
+});
+
+
+</script> 
+
+
+</head>
+<body> 
+
+<div id="container">
+
+    <br><br>
+	
+	 <div class="row">
+        <div class="col-md-12 column">
+
+			<form onsubmit="return true;"> 
+				<b>Lookup Player:</b>
+				<input id="zipsearch" type="text" /> 
+				<b><i> last name</i></b>
+			</form> 
+		</div>
+	</div>
+
+
+	{% block body %}{% endblock %}
+</div>
+
+</body>
+</html>

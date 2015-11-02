@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Accordion - Open on hoverintent</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  
+  
+  <script type="text/javascript">  
+	jQuery(document).ready(function()
+	{
+		$("#zipsearch").autocomplete({
+				source: "/suggest_zip.php",
+				focus: function(event, ui) {
+					// prevent autocomplete from updating the textbox
+					event.preventDefault();
+					// manually update the textbox
+					$(this).val(ui.item.label);
+				},
+				select: function(event, ui) {
+					// prevent autocomplete from updating the textbox
+					event.preventDefault();
+					// manually update the textbox and hidden field
+					$(this).val(ui.item.label);
+					$("#zipsearch").val(ui.item.value);
+					$redirect = "http://symfony.scurtin.org/app_dev.php/?term=" + ui.item.value;
+					console.log("http://symfony.scurtin.com/term=" + ui.item.value );
+					window.location = $redirect;
+				}
+		});	
+	});
+	
+</script>
+</head>
+<body>
+
+<br>
+	
+ <div class="row">
+	<div class="col-md-12 column">
+
+		<form onsubmit="return true;"> 
+			<b>Lookup Player:</b>
+			<input id="zipsearch" type="text" /> 
+		</form> 
+	</div>
+</div>
+<br>
+
+
+
+
+ 
+ 
+</body>
+</html>
